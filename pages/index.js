@@ -1,5 +1,6 @@
 import { useTheme } from "@mui/material";
 import Head from "next/head";
+import Image from "next/image";
 
 export default function Home() {
   const theme = useTheme();
