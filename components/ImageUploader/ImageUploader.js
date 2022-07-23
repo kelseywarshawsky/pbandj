@@ -22,7 +22,7 @@ export default function ImageUploader() {
     const sendIt = await axios({
       method: 'post',
       url: '/api/pinata',
-      headers: {},
+      headers: { 'content-type': 'multipart/form-data' },
       data: {
         file: pinataPayload.file,
         description: pinataPayload.description,
