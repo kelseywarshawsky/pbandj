@@ -1,61 +1,71 @@
-import "../styles/globals.css";
-import { createTheme, rgbToHex, ThemeProvider } from "@mui/material/styles";
-import { useEffect, useState } from "react";
+import '../styles/globals.css';
+// import { AppProps } from "next/app";
+import { ThirdwebWeb3Provider } from '@3rdweb/hooks';
+
+// the chain id 4 represents the rinkeby network and
+//the injected connector is a web 3 connection method used by meta mask
+const supportedChainIds = [4];
+const connectors = {
+  injected: {},
+};
+
+import { createTheme, rgbToHex, ThemeProvider } from '@mui/material/styles';
+import { useEffect, useState } from 'react';
 
 const themeColors = {
   purple: {
-    main: "#C200FB",
-    light: "#CE33FB",
-    dark: "#8700AF",
-    contrastText: "#FFFFFF",
+    main: '#C200FB',
+    light: '#CE33FB',
+    dark: '#8700AF',
+    contrastText: '#FFFFFF',
   },
   pink: {
-    main: "#FF6685",
-    light: "#FF849D",
-    dark: "#B2475D",
-    contrastText: rgbToHex("rgba(0, 0, 0, 0.87)"),
+    main: '#FF6685',
+    light: '#FF849D',
+    dark: '#B2475D',
+    contrastText: rgbToHex('rgba(0, 0, 0, 0.87)'),
   },
   brown: {
-    main: "#714732",
-    light: "#BB8063",
+    main: '#714732',
+    light: '#BB8063',
   },
   yellow: {
-    main: "#FFAE03",
-    light: "#FFBE35",
-    dark: "#B27902",
-    contrastText: rgbToHex("rgba(0, 0, 0, 0.87)"),
+    main: '#FFAE03',
+    light: '#FFBE35',
+    dark: '#B27902',
+    contrastText: rgbToHex('rgba(0, 0, 0, 0.87)'),
   },
   orange: {
-    main: "#E25E17",
-    light: "#E77E45",
-    dark: "#9E4110",
-    contrastText: "#FFFFFF",
+    main: '#E25E17',
+    light: '#E77E45',
+    dark: '#9E4110',
+    contrastText: '#FFFFFF',
   },
   whiteBackground: {
-    main: "#FFE0C2",
-    light: "#FFF5EB",
+    main: '#FFE0C2',
+    light: '#FFF5EB',
   },
   white: {
-    main: "#FFE0C2",
-    dark: "#858585",
+    main: '#FFE0C2',
+    dark: '#858585',
   },
   dark: {
-    main: "#00171f",
+    main: '#00171f',
   },
 };
 
 const darkTheme = createTheme(themeColors, {
   palette: {
-    mode: "dark",
+    mode: 'dark',
     background: {
       main: themeColors.brown.main,
       paper: themeColors.brown.light,
     },
     text: {
-      primary: "#FFEBEE",
-      secondary: "#FFCDD2",
-      hint: "#aaaaaa",
-      disabled: "#aaaaaa",
+      primary: '#FFEBEE',
+      secondary: '#FFCDD2',
+      hint: '#aaaaaa',
+      disabled: '#aaaaaa',
     },
     primary: {
       main: themeColors.purple.main,
@@ -86,16 +96,16 @@ const darkTheme = createTheme(themeColors, {
 
 const lightTheme = createTheme(themeColors, {
   palette: {
-    mode: "light",
+    mode: 'light',
     background: {
       main: themeColors.whiteBackground.main,
       paper: themeColors.whiteBackground.light,
     },
     text: {
-      primary: "#161616",
-      secondary: "#525050",
-      hint: "#aaaaaa",
-      disabled: "#aaaaaa",
+      primary: '#161616',
+      secondary: '#525050',
+      hint: '#aaaaaa',
+      disabled: '#aaaaaa',
     },
     primary: {
       main: themeColors.purple.main,
@@ -126,13 +136,23 @@ const lightTheme = createTheme(themeColors, {
 
 const theme = {
   typography: {
-    fontFamily: ["Lato", "sans-serif"].join(","),
+    fontFamily: ['Lato', 'sans-serif'].join(','),
   },
 };
 
+// function MyApp({ Component, pageProps }) {
+//   return (
+//     <ThirdwebWeb3Provider
+//       supportedChainIds={supportedChainIds}
+//       connectors={connectors}>
+//       <Component {...pageProps} />
+//     </ThirdwebWeb3Provider>
+//   );
+// }
+
 const MyApp = ({ Component, pageProps }) => {
   const [themeColor, setThemeColor] = useState(true);
-  const getLightorDarkTheme = (isLightTheme) => {
+  const getLightorDarkTheme = isLightTheme => {
     return isLightTheme === true
       ? createTheme(lightTheme, {
           ...theme,
@@ -142,12 +162,16 @@ const MyApp = ({ Component, pageProps }) => {
         });
   };
   useEffect(() => {
-    console.log("state change => ", themeColor);
+    console.log('state change => ', themeColor);
   });
   return (
-    <ThemeProvider theme={getLightorDarkTheme(themeColor)}>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <ThirdwebWeb3Provider
+      supportedChainIds={supportedChainIds}
+      connectors={connectors}>
+      <ThemeProvider theme={getLightorDarkTheme(themeColor)}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </ThirdwebWeb3Provider>
   );
 };
 
