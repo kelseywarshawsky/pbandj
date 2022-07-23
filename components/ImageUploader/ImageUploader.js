@@ -1,22 +1,36 @@
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
+import axios from 'axios';
 
 export default function ImageUploader() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
-  const submitNFT = () => {
+  const submitNFT = async () => {
     const pinataPayload = {
       file: selectedImage,
       name: name,
       description: description
     };
+
     console.log('payload', pinataPayload);
+
+    const sendIt = await axios({
+      method: 'post',
+      url: '/api/pinata',
+      headers: {},
+      data: {
+        file: pinataPayload.file,
+        description: pinataPayload.description,
+        name: pinataPayload.name
+      }
+    });
+
+    console.log('response from api:', sendIt);
   };
 
   return (
