@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 // import { AppProps } from "next/app";
 import { ThirdwebWeb3Provider } from '@3rdweb/hooks';
+import MainLayout from '../components/Layouts/MainLayout';
 
 // the chain id 4 represents the rinkeby network and
 //the injected connector is a web 3 connection method used by meta mask
@@ -169,7 +170,9 @@ const MyApp = ({ Component, pageProps }) => {
       supportedChainIds={supportedChainIds}
       connectors={connectors}>
       <ThemeProvider theme={getLightorDarkTheme(themeColor)}>
-        <Component {...pageProps} />
+        <MainLayout>
+          <Component {...pageProps} />
+        </MainLayout>
       </ThemeProvider>
     </ThirdwebWeb3Provider>
   );
