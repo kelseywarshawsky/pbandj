@@ -1,15 +1,65 @@
-import { useTheme } from "@mui/material";
-import Head from "next/head";
+import Head from 'next/head'
+import Image from 'next/image'
+import { Grid, Container, Divider, Typography } from '@mui/material'
 
 export default function Home() {
   const theme = useTheme();
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="PB&J" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>PBandJ</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      <Container>
+        
+        <Grid 
+          container 
+          direction="column" 
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Grid item xs={12}>
+            <Typography 
+              variant="h1"
+            >
+              p b and j
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography
+              variant="h2"
+            >
+              .
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography
+              variant="h2"
+            >
+              .
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+          <Typography
+              variant="h2"
+            >
+              we'll bring the bread
+            </Typography>
+          </Grid>
+        </Grid>
+        <Divider variant="middle" />
+        <Grid 
+          container 
+          direction="column" 
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Grid item xs={12}>
+           
+          </Grid>
+        </Grid>
+      </Container>
     </div>
   );
 }
