@@ -8,13 +8,11 @@ data.append('metadata', '{"keyvalues": { "example": "value" }}');
 data.append('wrapWithDirectory', 'false');
 data.append('pinToIPFS', 'false');
 
-console.log(process.env.SUBMARINE_KEY);
-
 const config = {
   method: 'post',
   url: 'https://managed.mypinata.cloud/api/v1/content',
   headers: { 
-    'x-api-key': 'AIFUlXOCMKZVE6QtmJhQI5V4ZEQ8yxso', 
+    'x-api-key': process.env.SUBMARINE_KEY, 
     ...data.getHeaders()
   },
   data : data
