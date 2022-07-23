@@ -2,11 +2,6 @@ const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');
 const data = new FormData();
-data.append('files', fs.createReadStream('/Users/kelseygasser/documents/hackathon/images/cat.jpeg'));
-data.append('name', 'My File');
-data.append('metadata', '{"keyvalues": { "example": "value" }}');
-data.append('wrapWithDirectory', 'false');
-data.append('pinToIPFS', 'false');
 
 const config = {
   method: 'post',
@@ -19,14 +14,16 @@ const config = {
 };
 
 
-export default async function post() {
+export default async function post(file, name, description) {
+  data.append('files', file));
+  data.append('name', name);
+  data.append('metadata', '{"keyvalues": { "description": "' + description + '"}}');
+  data.append('wrapWithDirectory', 'false');
+  data.append('pinToIPFS', 'false');
     try {
       const call = await axios(config);
-      console.log(call);
     } catch (error) {
       console.error(error);
     }
   }
-
-post();
 
