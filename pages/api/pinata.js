@@ -7,7 +7,7 @@ const config = {
   method: 'post',
   url: 'https://managed.mypinata.cloud/api/v1/content',
   headers: { 
-    'x-api-key': process.env.SUBMARINE_KEY, 
+    'x-api-key': process.env.NEXT_PUBLIC_SUBMARINE_KEY, 
     ...data.getHeaders()
   },
   data : data
