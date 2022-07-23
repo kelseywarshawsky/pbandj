@@ -1,7 +1,6 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
 import { useEffect } from 'react';
+import { useTheme } from '@mui/material';
 import { useWeb3 } from '@3rdweb/hooks';
 import Header from '../components/Header';
 import Head from 'next/head';
