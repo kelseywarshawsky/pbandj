@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Grid, Container, Divider, Typography } from '@mui/material'
 
 export default function Home() {
+  const theme = useTheme();
   return (
     <div>
       <Head>
@@ -60,5 +61,5 @@ export default function Home() {
         </Grid>
       </Container>
     </div>
-  )
+  );
 }
