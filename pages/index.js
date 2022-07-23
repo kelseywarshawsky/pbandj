@@ -1,8 +1,5 @@
 import { useTheme } from "@mui/material";
-import { Container } from "@mui/system";
 import Head from "next/head";
-import Image from "next/image";
-import Pricing from "../components/Pricing";
 
 export default function Home() {
   const theme = useTheme();

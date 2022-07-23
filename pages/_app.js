@@ -1,8 +1,6 @@
 import "../styles/globals.css";
 import { createTheme, rgbToHex, ThemeProvider } from "@mui/material/styles";
 import { useEffect, useState } from "react";
-import ThemeSwitcher from "../components/ThemeSwitcher";
-import Navigation from "../components/Navigation";
 
 const themeColors = {
   purple: {
