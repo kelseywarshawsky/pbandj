@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
-import axios from 'axios';
+import { postPinata } from '../../pinata/pinata.js';
 
 export default function ImageUploader() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -11,29 +11,7 @@ export default function ImageUploader() {
   const [description, setDescription] = useState('');
 
   const submitNFT = async () => {
-    const data = new FormData();
-    data.append('files', selectedImage);
-    data.append('name', name);
-    data.append('wrapWithDirectory', 'false');
-    data.append('metadata', '{"keyvalues": { "description": "' + description + '" }}');
-    data.append('pinToIPFS', 'false');
-
-    const config = {
-      method: 'post',
-      url: 'https://managed.mypinata.cloud/api/v1/content',
-      headers: {
-        'x-api-key': process.env.NEXT_PUBLIC_SUBMARINE_KEY,
-        'Content-Type': 'multipart/form-data'
-      },
-      data: data
-    };
-
-    console.log(config);
-
-    axios(config).then((res) => {
-      console.log(res);
-      console.log(res.data);
-    });
+    postPinata(selectedImage, name, description);
   };
 
   return (
