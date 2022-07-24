@@ -44,8 +44,12 @@ export default function Dashboard() {
   return (
     <div>
       <br />
-      <ImageUploader getNewImage={getNewImage} />(
-      {images.length > 0 ? <ImageGrid images={images} /> : null})
+      <ImageUploader getNewImage={getNewImage} />
+      {images.length > 0 ? (
+        <ImageGrid images={images} />
+      ) : (
+        <p>Upload Some Images Above To See Some NFTs</p>
+      )}
     </div>
   );
 }
