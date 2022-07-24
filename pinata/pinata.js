@@ -10,11 +10,39 @@ export async function getPinata() {
   };
 
   let nfts = [];
+  let accessToken = '';
+  try {
+    await axios(config).then((res) => {
+      nfts = res.data.items;
+    });
+    const ids = nfts.map((nft) => nft.id);
+    await getAccessToken(ids).then((res) => {
+      accessToken = res;
+    });
+  } catch (err) {
+    console.error(err);
+  }
+  return { nfts, accessToken };
+}
 
-  await axios(config).then((res) => {
-    nfts = res.data.items;
+export async function getAccessToken(ids) {
+  var data = JSON.stringify({
+    timeoutSeconds: 3600,
+    contentIds: ids
   });
-  return nfts;
+
+  var config = {
+    method: 'post',
+    url: 'https://managed.mypinata.cloud/api/v1/auth/content/jwt',
+    headers: {
+      'x-api-key': process.env.NEXT_PUBLIC_SUBMARINE_KEY,
+      'Content-Type': 'application/json'
+    },
+    data: data
+  };
+
+  const res = await axios(config);
+  return res.data;
 }
 
 export async function postPinata(image, name, description) {
@@ -35,30 +63,7 @@ export async function postPinata(image, name, description) {
     data: data
   };
 
-  console.log(config);
-
   axios(config).then((res) => {
     return res.data;
   });
-}
-
-export async function getAccessToken(ids) {
-  var data = JSON.stringify({
-    timeoutSeconds: 3600,
-    contentIds: ids
-  });
-
-  var config = {
-    method: 'post',
-    url: 'https://managed.mypinata.cloud/api/v1/auth/content/jwt',
-    headers: {
-      'x-api-key': process.env.NEXT_PUBLIC_SUBMARINE_KEY,
-      'Content-Type': 'application/json'
-    },
-    data: data
-  };
-
-  const res = await axios(config);
-  console.log(res);
-  return res.data;
 }
