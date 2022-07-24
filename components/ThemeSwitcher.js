@@ -1,10 +1,6 @@
 import React from 'react';
-import IconButton from '@mui/material/IconButton';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { Stack, Typography, useTheme } from '@mui/material';
 import Switch from '@mui/material/Switch';
-import { styled } from '@mui/system';
 
 // Needs to be passed themeColor and setThemeColor all the way from the top _app.js for state setting
 const ThemeSwitcher = ({ themeColor, setThemeColor }) => {
@@ -12,7 +8,7 @@ const ThemeSwitcher = ({ themeColor, setThemeColor }) => {
   return (
     <>
       <Stack direction="row" spacing={1} alignItems="center">
-        <Typography>White</Typography>
+        <Typography>white</Typography>
         <Switch
           onChange={() => {
             setThemeColor(!themeColor);
@@ -21,18 +17,21 @@ const ThemeSwitcher = ({ themeColor, setThemeColor }) => {
           sx={{
             '&:active': {
               '& .MuiSwitch-thumb': {
-                backgroundColor: theme.palette.warning.main
+                backgroundColor: theme.palette.error.main
               },
               '& .MuiSwitch-switchBase.Mui-checked': {
-                backgroundColor: theme.palette.warning.main
+                backgroundColor: theme.palette.error.main
               }
+            },
+            '& .MuiSwitch-track': {
+              backgroundColor: 'white'
             },
             '& .MuiSwitch-switchBase': {
               '&.Mui-checked': {
                 color: '#fff',
                 '& + .MuiSwitch-track': {
                   opacity: 1,
-                  backgroundColor: theme.palette.warning.dark
+                  backgroundColor: theme.palette.error.dark
                 }
               }
             },
@@ -40,13 +39,13 @@ const ThemeSwitcher = ({ themeColor, setThemeColor }) => {
               backgroundColor: theme.palette.background.main,
               opacity: '100%',
               '&.Mui-checked': {
-                color: theme.palette.warning.dark,
-                backgroundColor: theme.palette.warning.dark
+                color: theme.palette.error.dark,
+                backgroundColor: theme.palette.error.dark
               }
             }
           }}
         />
-        <Typography>Wheat</Typography>
+        <Typography>wheat</Typography>
       </Stack>
     </>
   );

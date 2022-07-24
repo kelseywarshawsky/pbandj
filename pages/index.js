@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Grid, Container, Divider, Typography } from '@mui/material';
+import { Grid, Container, Divider, Typography, Stack, colors } from '@mui/material';
 import { useTheme, Button } from '@mui/material';
 import { height } from '@mui/system';
 import { useWeb3 } from '@3rdweb/hooks';
@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { client } from '../lib/sanityClient';
 import { getUsers } from '../services/sanity.service';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
+import Link from 'next/link';
 
 const style = {
   wrapper: ``,

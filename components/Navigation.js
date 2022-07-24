@@ -10,17 +10,18 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import ThemeSwitcher from './ThemeSwitcher';
 import Link from 'next/link';
 import { Grid } from '@mui/material';
+import { useTheme } from '@mui/system';
 
-const pages = ['dashboard'];
+const pages = ['dashboard', 'collections'];
 const settings = ['Logout'];
 
 const Navigation = ({ themeColor, setThemeColor }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const theme = useTheme();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -49,38 +50,58 @@ const Navigation = ({ themeColor, setThemeColor }) => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
+          <Link href="/" passHref>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                mr: 5,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'sans-serif',
+                fontWeight: 900,
+                letterSpacing: '.2rem',
+                fontSize: '2rem',
+                color: 'inherit',
+                textDecoration: 'none'
+              }}
+            >
+              p b & j
+            </Typography>
+          </Link>
+
+          <Box
             sx={{
-              mr: 5,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'sans-serif',
-              fontWeight: 900,
-              letterSpacing: '.2rem',
-              fontSize: '2rem',
-              color: 'inherit',
-              textDecoration: 'none'
+              flexGrow: 1,
+              display: { xs: 'none', md: 'flex' }
             }}
           >
-            p b & j
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Link href={`/${page}`} passHref>
-                <Button key={page} sx={{ my: 2, color: 'white', display: 'block' }}>
-                  {page}
-                </Button>
-              </Link>
-            ))}
+            {pages.map((page) => {
+              if (page === 'collections') {
+                return (
+                  <Link href={`/${page}/0x74804f316B8CCCB7cfff8927EFb127DDCDB3E660`} passHref>
+                    <Button
+                      key={page}
+                      sx={{ my: 2, display: 'block', color: theme.palette.primary.contrastText }}
+                    >
+                      {page}
+                    </Button>
+                  </Link>
+                );
+              } else {
+                return (
+                  <Link href={`/${page}`} passHref>
+                    <Button
+                      key={page}
+                      sx={{ my: 2, display: 'block', color: theme.palette.primary.contrastText }}
+                    >
+                      {page}
+                    </Button>
+                  </Link>
+                );
+              }
+            })}
           </Box>
-
-          {/* <Link href="/collections/0x74804f316B8CCCB7cfff8927EFb127DDCDB3E660">
-            <div>Collections</div>
-          </Link> */}
 
           <Box sx={{ flexGrow: 0 }}>
             <Grid container spacing={5}>
