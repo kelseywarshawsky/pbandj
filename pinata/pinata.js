@@ -42,10 +42,10 @@ export async function postPinata(image, name, description) {
   });
 }
 
-export async function getAccessToken() {
+export async function getAccessToken(ids) {
   var data = JSON.stringify({
     timeoutSeconds: 3600,
-    contentIds: ['2291db4c-2d1f-4a21-b375-6fee42738ca8']
+    contentIds: ids
   });
 
   var config = {
