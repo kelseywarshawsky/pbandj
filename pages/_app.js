@@ -96,6 +96,9 @@ const darkTheme = createTheme(themeColors, {
       light: themeColors.yellow.light,
       dark: themeColors.yellow.dark,
       contrastText: themeColors.yellow.contrastText
+    },
+    blackText: {
+      main: '#000000'
     }
   }
 });
@@ -137,6 +140,9 @@ const lightTheme = createTheme(themeColors, {
       light: themeColors.yellow.light,
       dark: themeColors.yellow.dark,
       contrastText: themeColors.yellow.contrastText
+    },
+    blackText: {
+      main: '#000000'
     }
   }
 });
