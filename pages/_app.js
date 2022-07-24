@@ -1,4 +1,6 @@
 import '../styles/globals.css';
+import '../styles/index.css';
+
 // import { AppProps } from "next/app";
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThirdwebWeb3Provider } from '@3rdweb/hooks';
@@ -144,7 +146,7 @@ const theme = {
     root: {
       textTransform: 'lowercase'
     },
-    fontFamily: ['Lato', 'sans-serif'].join(','),
+    fontFamily: ['Roboto', 'sans-serif'].join(','),
     button: {
       textTransform: 'lowercase'
     }
@@ -161,7 +163,7 @@ const theme = {
 };
 
 const MyApp = ({ Component, pageProps }) => {
-  const [themeColor, setThemeColor] = useState(false);
+  const [themeColor, setThemeColor] = useState(true);
   const getLightorDarkTheme = (isLightTheme) => {
     return isLightTheme === true
       ? createTheme(lightTheme, {

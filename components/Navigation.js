@@ -10,13 +10,12 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import ThemeSwitcher from './ThemeSwitcher';
 import Link from 'next/link';
 import { Grid } from '@mui/material';
 import { useTheme } from '@mui/system';
 
-const pages = ['about', 'dashboard', 'collections'];
+const pages = ['dashboard', 'collections'];
 const settings = ['Logout'];
 
 const Navigation = ({ themeColor, setThemeColor }) => {
@@ -51,24 +50,25 @@ const Navigation = ({ themeColor, setThemeColor }) => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 5,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'sans-serif',
-              fontWeight: 900,
-              letterSpacing: '.2rem',
-              fontSize: '2rem',
-              color: 'inherit',
-              textDecoration: 'none'
-            }}
-          >
-            p b & j
-          </Typography>
+          <Link href="/" passHref>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                mr: 5,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'sans-serif',
+                fontWeight: 900,
+                letterSpacing: '.2rem',
+                fontSize: '2rem',
+                color: 'inherit',
+                textDecoration: 'none'
+              }}
+            >
+              p b & j
+            </Typography>
+          </Link>
 
           <Box
             sx={{
@@ -102,6 +102,7 @@ const Navigation = ({ themeColor, setThemeColor }) => {
               }
             })}
           </Box>
+
           <Box sx={{ flexGrow: 0 }}>
             <Grid container spacing={5}>
               <Grid item>
