@@ -13,7 +13,8 @@ const style = {
 };
 
 export default function Home({ themeColor, setThemeColor }) {
-  const { address, connectWallet } = useWeb3();
+  const { address, connectWallet, disconnectWallet, chainId, getNetworkMetadata, provider } =
+    useWeb3();
   const theme = useTheme();
 
   useEffect(() => {
@@ -26,6 +27,14 @@ export default function Home({ themeColor, setThemeColor }) {
         walletAddress: address
       };
       const result = await client.createIfNotExists(userDoc);
+      //comes from useWeb3()
+      console.log(' chain id ', chainId);
+      console.log('address == ', address);
+      console.log('provider == ', provider);
+      // console.log('results == ', result);
+      // console.log('connect wallet == ', connectWallet);
+      // console.log('disconnect wallet == ', disconnectWallet);
+      // console.log(' get network meta data == ', getNetworkMetadata);
     })();
   }, [address]);
 

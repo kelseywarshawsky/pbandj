@@ -1,12 +1,13 @@
-import React from "react";
-import Image from "next/image";
-import chong from "../assests/chong.png";
-import Link from "next/link";
-import { AiOutlineSearch } from "react-icons/ai";
-import { CgProfile } from "react-icons/cg";
-import { MdOutlineAccountBalanceWallet } from "react-icons/md";
-import { Grid, useTheme } from "@mui/material";
-import ThemeSwitcher from "./ThemeSwitcher";
+import React from 'react';
+import Image from 'next/image';
+import chong from '../assests/chong.png';
+import Link from 'next/link';
+import { AiOutlineSearch } from 'react-icons/ai';
+import { CgProfile } from 'react-icons/cg';
+import { MdOutlineAccountBalanceWallet } from 'react-icons/md';
+import { Grid, useTheme } from '@mui/material';
+import ThemeSwitcher from './ThemeSwitcher';
+// import Link from 'next/link';
 
 const Header = ({ themeColor, setThemeColor }) => {
   const theme = useTheme();
@@ -17,28 +18,17 @@ const Header = ({ themeColor, setThemeColor }) => {
     imgWrap: `rounded-full border overflow-hidden`,
     headerItems: ` flex items-center justify-end`,
     headerItem: `px-4 font-bold cursor-pointer`,
-    headerIcon: `text-3xl font-black px-4 hover:text-white cursor-pointer`,
+    headerIcon: `text-3xl font-black px-4 hover:text-white cursor-pointer`
   };
   return (
     <div
       className={style.wrapper}
       style={{
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.main
       }}
     >
-      <Grid
-        container
-        flexDirection={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-      >
-        <Grid
-          item
-          xs={"auto"}
-          container
-          flexDirection={"row"}
-          alignItems={"center"}
-        >
+      <Grid container flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
+        <Grid item xs={'auto'} container flexDirection={'row'} alignItems={'center'}>
           <Grid item>
             <Link href="/">
               <div className={style.logoContainer}>
@@ -48,19 +38,16 @@ const Header = ({ themeColor, setThemeColor }) => {
                 <div
                   className={style.logoText}
                   style={{
-                    color: theme.palette.text.primary,
+                    color: theme.palette.text.primary
                   }}
                 >
-                  PB and J{" "}
+                  PB and J{' '}
                 </div>
               </div>
             </Link>
           </Grid>
           <Grid item>
-            <ThemeSwitcher
-              themeColor={themeColor}
-              setThemeColor={setThemeColor}
-            />
+            <ThemeSwitcher themeColor={themeColor} setThemeColor={setThemeColor} />
           </Grid>
         </Grid>
         <Grid item>
@@ -69,7 +56,7 @@ const Header = ({ themeColor, setThemeColor }) => {
               <div
                 className={style.headerItem}
                 style={{
-                  color: theme.palette.text.secondary,
+                  color: theme.palette.text.secondary
                 }}
               >
                 Collections
@@ -78,7 +65,7 @@ const Header = ({ themeColor, setThemeColor }) => {
             <div
               className={style.headerItem}
               style={{
-                color: theme.palette.text.secondary,
+                color: theme.palette.text.secondary
               }}
             >
               Stats
@@ -86,7 +73,7 @@ const Header = ({ themeColor, setThemeColor }) => {
             <div
               className={style.headerItem}
               style={{
-                color: theme.palette.text.secondary,
+                color: theme.palette.text.secondary
               }}
             >
               Reasources
@@ -94,7 +81,7 @@ const Header = ({ themeColor, setThemeColor }) => {
             <div
               className={style.headerItem}
               style={{
-                color: theme.palette.text.secondary,
+                color: theme.palette.text.secondary
               }}
             >
               Create
@@ -102,7 +89,7 @@ const Header = ({ themeColor, setThemeColor }) => {
             <div
               className={style.headerIcon}
               style={{
-                color: theme.palette.text.secondary,
+                color: theme.palette.text.secondary
               }}
             >
               <CgProfile />
@@ -110,7 +97,7 @@ const Header = ({ themeColor, setThemeColor }) => {
             <div
               className={style.headerIcon}
               style={{
-                color: theme.palette.text.secondary,
+                color: theme.palette.text.secondary
               }}
             >
               <MdOutlineAccountBalanceWallet />
