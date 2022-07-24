@@ -7,6 +7,7 @@ import ImageListItem from '@mui/material/ImageListItem';
 import { useWeb3 } from '@3rdweb/hooks';
 import { getPinata, getAccessToken } from './../../pinata/pinata.js';
 import { getUsers } from '../../services/sanity.service';
+import { getPinata, deletePinata, unSubmarine } from './../../pinata/pinata.js';
 
 export default function Dashboard() {
   const [images, setImages] = useState([]);
@@ -25,6 +26,7 @@ export default function Dashboard() {
       if (images.length === 0) {
         await getPinata()
           .then((res) => {
+            console.log(res.nfts);
             getImageArray(res.nfts, res.accessToken);
           })
           .catch((err) => console.error(err));
@@ -38,13 +40,21 @@ export default function Dashboard() {
     return url;
   };
 
+  const getCid = (url) => {
+    const ending = url.split('/ipfs/')[1];
+    const cid = ending.split('?')[0];
+    console.log(cid);
+    return cid;
+  };
+
   const getImageArray = async (NFTs, accessToken) => {
     const filteredNFTs = NFTs.filter((NFT) => {
       return NFT.metadata.keyvalues.userAddress === address;
     });
     const urls = filteredNFTs.map((NFT) => {
       let url = buildImageUrl(NFT.cid, accessToken);
-      return url;
+      let id = NFT.id;
+      return { url, id };
     });
 
     setImages(urls);
@@ -59,6 +69,26 @@ export default function Dashboard() {
       .catch((err) => console.error(err));
   };
 
+  const deleteImage = async (id, url) => {
+    console.log('dis deletin');
+    const cid = getCid(url);
+    await deletePinata(id, cid).then((res) => {
+      console.log(res);
+      if (res.status === 200) {
+        window.alert('Image Deleted');
+      } else if (res === 'CURRENT_USER_HAS_NOT_PINNED_CID') {
+        window.alert('you have not pinned this cid');
+      }
+    });
+    await getNewImage();
+  };
+
+  const pinIt = async (id) => {
+    await unSubmarine(id).then((res) => {
+      window.alert(res);
+    });
+  };
+
   return (
     <div>
       <br />
@@ -66,15 +96,7 @@ export default function Dashboard() {
       {images.length > 0 ? (
         <div>
           <h3 className="text-center mt-3 mx-auto font-light text-3xl sm:text-4xl">Your Images</h3>
-          <ImageGrid images={images} />
-
-          {/* <ImageList variant="masonry" cols={{ xs: 3, sm: 4 }} gap={4}>
-            {images.map((item) => (
-              <ImageListItem key={item}>
-                <img src={item} loading="lazy" />
-              </ImageListItem>
-            ))}
-          </ImageList> */}
+          <ImageGrid images={images} deleteImage={deleteImage} pinIt={pinIt} />
         </div>
       ) : (
         <p className="mx-auto text-center">Upload Some Images Above To See Some NFTs</p>

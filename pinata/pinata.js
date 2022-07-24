@@ -67,7 +67,64 @@ export async function postPinata(image, name, description, address) {
     data: data
   };
 
-  axios(config).then((res) => {
+  await axios(config).then((res) => {
     return res.data;
   });
+}
+
+export async function unSubmarine(id) {
+  console.log(id);
+  var data = JSON.stringify({
+    name: 'pinned',
+    pinToIPFS: true
+  });
+
+  var config = {
+    method: 'put',
+    url: `https://managed.mypinata.cloud/api/v1/content/${id}`,
+    headers: {
+      'x-api-key': process.env.NEXT_PUBLIC_SUBMARINE_KEY,
+      'Content-Type': 'application/json'
+    },
+    data: data
+  };
+
+  const res = await axios(config);
+  console.log(res.data);
+  return res.data;
+}
+
+export async function updateName(name, id) {
+  var data = JSON.stringify({
+    name: name,
+    pinToIPFS: false
+  });
+
+  var config = {
+    method: 'put',
+    url: `https://managed.mypinata.cloud/api/v1/content/95c904a0-4d61-4598-a4c8-fb5f0793c7ab/${id}`,
+    headers: {
+      'x-api-key': process.env.NEXT_PUBLIC_SUBMARINE_KEY,
+      'Content-Type': 'application/json'
+    },
+    data: data
+  };
+
+  await axios(config).then((res) => {
+    return res.data;
+  });
+}
+
+export async function deletePinata(id, cid) {
+  await unSubmarine(id);
+  var config = {
+    method: 'delete',
+    url: `https://managed.mypinata.cloud/api/v1/content/${id}`,
+    headers: {
+      'x-api-key': process.env.NEXT_PUBLIC_SUBMARINE_KEY
+    }
+  };
+
+  const res = await axios(config);
+  return res.data;
 }
