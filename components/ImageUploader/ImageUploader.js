@@ -5,20 +5,22 @@ import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
 import { postPinata } from '../../pinata/pinata.js';
 
-export default function ImageUploader() {
+export default function ImageUploader(props) {
+  const { getNewImage } = props;
   const [selectedImage, setSelectedImage] = useState(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
   const submitNFT = async () => {
-    postPinata(selectedImage, name, description);
+    await postPinata(selectedImage, name, description);
+    setTimeout(getNewImage, 10000);
   };
 
   return (
-    <div className="flex flex-col items-center justify-items-center mx-auto my-auto">
+    <div className="flex flex-col p-4 items-center justify-items-center mx-auto my-auto">
       <Card sx={{ minWidth: 275 }}>
         <CardContent>
-          <h2 className="font-light text-2xl my-2 text-center">Upload Your Image</h2>
+          <h2 className="font-normal text-2xl my-2 text-center">Create Your NFT</h2>
           {selectedImage ? (
             <div className="flex flex-col items-center justify-items-center">
               <img
@@ -34,7 +36,7 @@ export default function ImageUploader() {
                 className="h-48 w-48 my-2 mx-auto"
                 alt="not fount"
                 width={'250px'}
-                src="/tempupload.png"
+                src="/images/upload.png"
               />
             </div>
           )}
