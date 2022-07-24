@@ -1,4 +1,3 @@
-import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 
 export default function ImageUploader(props) {
@@ -7,20 +6,18 @@ export default function ImageUploader(props) {
   console.log('images:', images);
 
   return (
-    <div className="p-7">
+    <div className="p-7 mx-auto">
       {images && images.length > 0 ? (
-        <Box sx={{ width: 500, minHeight: 829 }}>
-          <Masonry columns={3} spacing={2}>
-            {images.map((item, index) => (
-              <div key={index}>
-                <img className="w-36 h-auto" src={item} alt={item} loading="lazy" />
-              </div>
-            ))}
-          </Masonry>
-        </Box>
+        <Masonry columns={3} spacing={2} className="mx-auto">
+          {images.map((item, index) => (
+            <div key={index}>
+              <img className="mx-auto" src={item} alt={item} loading="lazy" />
+            </div>
+          ))}
+        </Masonry>
       ) : (
-        <div>
-          <p>Start Creating NFTs</p>
+        <div className="flex flex-col items-center justify-items-center">
+          <p className="text-center">Create Some NFTs.. You'll See Them Here!</p>
         </div>
       )}
     </div>
