@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import ImageUploader from '../../components/ImageUploader/ImageUploader';
 import ImageGrid from '../../components/ImageGrid/ImageGrid';
 import { getPinata, getAccessToken } from './../../pinata/pinata.js';
+import { getUsers } from '../../services/sanity.service';
 
 export default function Dashboard() {
   const [images, setImages] = useState([]);

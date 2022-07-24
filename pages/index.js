@@ -3,8 +3,9 @@ import { Grid, Container, Divider, Typography } from '@mui/material';
 import { useTheme, Button } from '@mui/material';
 import { height } from '@mui/system';
 import { useWeb3 } from '@3rdweb/hooks';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { client } from '../lib/sanityClient';
+import { getUsers } from '../services/sanity.service';
 
 const style = {
   wrapper: ``,
@@ -15,6 +16,7 @@ const style = {
 
 export default function Home({ themeColor, setThemeColor }) {
   const { address, connectWallet, chainId, provider } = useWeb3();
+  const [currentUser, setCurrentUser] = useState({});
   const theme = useTheme();
 
   useEffect(() => {
@@ -27,6 +29,14 @@ export default function Home({ themeColor, setThemeColor }) {
         walletAddress: address
       };
       const result = await client.createIfNotExists(userDoc);
+
+      const allUsers = await getUsers();
+      
+      allUsers.forEach((user) => {
+        if (user.walletAddress === address) {
+          setCurrentUser(user);
+        }
+      });
       //comes from useWeb3()
       console.log(' chain id ', chainId);
       console.log('address == ', address);
@@ -54,6 +64,7 @@ export default function Home({ themeColor, setThemeColor }) {
               height: '35vh'
             }}
           >
+            {JSON.stringify(currentUser)}
             Bread 1
           </div>
           <div
