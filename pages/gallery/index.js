@@ -56,12 +56,9 @@ export default function Dashboard() {
   return (
     <div>
       <br />
-      <ImageUploader getNewImage={getNewImage} />
+      <h3 className="text-center mx-auto font-light text-3xl sm:text-4xl">Community Gallery</h3>
       {images.length > 0 ? (
-        <div>
-          <h3 className="text-center mt-3 mx-auto font-light text-3xl sm:text-4xl">Your Images</h3>
-          <ImageGrid images={images} />
-        </div>
+        <ImageGrid images={images} />
       ) : (
         <p className="mx-auto text-center">Upload Some Images Above To See Some NFTs</p>
       )}
