@@ -32,11 +32,20 @@ export default function Dashboard() {
     setImages(urls);
   };
 
+  const getNewImage = async () => {
+    console.log('are you talking to me?');
+    await getPinata()
+      .then((res) => {
+        getImageArray(res.nfts, res.accessToken);
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <div>
       <br />
-      <ImageUploader />
-      {images.length > 0 ? <ImageGrid images={images} /> : null}
+      <ImageUploader getNewImage={getNewImage} />(
+      {images.length > 0 ? <ImageGrid images={images} /> : null})
     </div>
   );
 }
