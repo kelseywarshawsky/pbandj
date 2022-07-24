@@ -77,7 +77,8 @@ const Navigation = ({ themeColor, setThemeColor }) => {
               </Link>
             ))}
           </Box>
-
+          {/* 0x74804f316B8CCCB7cfff8927EFb127DDCDB3E660 */}
+          {/* 0xbA631CEcCCC5f8423E1251ea62F0159D40C0eaFb */}
           <Link href="/collections/0x74804f316B8CCCB7cfff8927EFb127DDCDB3E660">
             <div>Collections</div>
           </Link>
