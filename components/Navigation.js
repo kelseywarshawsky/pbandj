@@ -10,7 +10,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import ThemeSwitcher from './ThemeSwitcher';
 import Link from 'next/link';
 import { Grid } from '@mui/material';
@@ -51,24 +50,25 @@ const Navigation = ({ themeColor, setThemeColor }) => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 5,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'sans-serif',
-              fontWeight: 900,
-              letterSpacing: '.2rem',
-              fontSize: '2rem',
-              color: 'inherit',
-              textDecoration: 'none'
-            }}
-          >
-            p b & j
-          </Typography>
+          <Link href="/" passHref>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                mr: 5,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'sans-serif',
+                fontWeight: 900,
+                letterSpacing: '.2rem',
+                fontSize: '2rem',
+                color: 'inherit',
+                textDecoration: 'none'
+              }}
+            >
+              p b & j
+            </Typography>
+          </Link>
 
           <Box
             sx={{

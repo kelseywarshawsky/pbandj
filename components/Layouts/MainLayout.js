@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Button, Container, Grid, useTheme, Typography } from '@mui/material';
 import { useWeb3 } from '@3rdweb/hooks';
 import { client } from '../../lib/sanityClient';
-import { fontSize } from '@mui/system';
 
 const Layout = ({ children }) => {
   const { address, connectWallet } = useWeb3();
@@ -43,7 +42,7 @@ const Layout = ({ children }) => {
               alignContent={'center'}
             >
               <Grid item>
-                <Typography variant="h2">Meta Mask?</Typography>
+                <Typography variant="h2">signed up for meta mask?</Typography>
               </Grid>
               <Grid item>
                 <Button
@@ -60,7 +59,7 @@ const Layout = ({ children }) => {
                 </Button>
               </Grid>
               <Grid item>
-                <Typography variant="h3">(Yes, it's really that simple)</Typography>
+                <Typography variant="h3">(yes, it's really that simple)</Typography>
               </Grid>
             </Grid>
           </Grid>
