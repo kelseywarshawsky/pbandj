@@ -13,7 +13,7 @@ const ThemeSwitcher = ({ themeColor, setThemeColor }) => {
           onChange={() => {
             setThemeColor(!themeColor);
           }}
-          defaultChecked
+          defaultChecked={false}
           sx={{
             '&:active': {
               '& .MuiSwitch-thumb': {
