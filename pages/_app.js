@@ -13,7 +13,6 @@ const connectors = {
 
 import { createTheme, rgbToHex, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
-import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 
 const themeColors = {
@@ -79,7 +78,7 @@ const darkTheme = createTheme(themeColors, {
       contrastText: themeColors.purple.contrastText
     },
     secondary: {
-      main: themeColors.pink.main,
+      main: '#933548',
       light: themeColors.pink.light,
       dark: themeColors.pink.dark,
       contrastText: themeColors.pink.contrastText
@@ -128,7 +127,7 @@ const lightTheme = createTheme(themeColors, {
     error: {
       main: themeColors.orange.main,
       light: themeColors.orange.light,
-      dark: themeColors.orange.dark,
+      dark: '#ED8045',
       contrastText: themeColors.orange.contrastText
     },
     warning: {
@@ -142,12 +141,27 @@ const lightTheme = createTheme(themeColors, {
 
 const theme = {
   typography: {
-    fontFamily: ['Lato', 'sans-serif'].join(',')
+    root: {
+      textTransform: 'lowercase'
+    },
+    fontFamily: ['Lato', 'sans-serif'].join(','),
+    button: {
+      textTransform: 'lowercase'
+    }
+  },
+  components: {
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none'
+        }
+      }
+    }
   }
 };
 
 const MyApp = ({ Component, pageProps }) => {
-  const [themeColor, setThemeColor] = useState(true);
+  const [themeColor, setThemeColor] = useState(false);
   const getLightorDarkTheme = (isLightTheme) => {
     return isLightTheme === true
       ? createTheme(lightTheme, {
