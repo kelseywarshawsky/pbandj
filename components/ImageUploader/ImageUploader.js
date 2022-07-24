@@ -11,26 +11,28 @@ export default function ImageUploader() {
   const [description, setDescription] = useState('');
 
   const submitNFT = async () => {
-    const pinataPayload = {
-      file: selectedImage,
-      name: name,
-      description: description
+    const data = new FormData();
+    data.append('files', selectedImage);
+    data.append('name', name);
+    data.append('wrapWithDirectory', 'false');
+    data.append('pinToIPFS', 'false');
+
+    const config = {
+      method: 'post',
+      url: 'https://managed.mypinata.cloud/api/v1/content',
+      headers: {
+        'x-api-key': process.env.NEXT_PUBLIC_SUBMARINE_KEY,
+        'Content-Type': 'multipart/form-data'
+      },
+      data: data
     };
 
-    console.log('payload', pinataPayload);
+    console.log(config);
 
-    const sendIt = await axios({
-      method: 'post',
-      url: '/api/pinata',
-      headers: { 'content-type': 'multipart/form-data' },
-      data: {
-        file: pinataPayload.file,
-        description: pinataPayload.description,
-        name: pinataPayload.name
-      }
+    axios(config).then((res) => {
+      console.log(res);
+      console.log(res.data);
     });
-
-    console.log('response from api:', sendIt);
   };
 
   return (
