@@ -1,9 +1,10 @@
-import { useEffect } from "react";
-import { useTheme } from "@mui/material";
-import { useWeb3 } from "@3rdweb/hooks";
-import Header from "../components/Header";
-import Head from "next/head";
-import { Grid, Container, Divider, Typography } from "@mui/material";
+import { useEffect } from 'react';
+import { useTheme } from '@mui/material';
+import { useWeb3 } from '@3rdweb/hooks';
+import Header from '../components/Header';
+import Head from 'next/head';
+import { Grid, Container, Divider, Typography } from '@mui/material';
+import { client } from '../lib/sanityClient';
 
 const style = {
   wrapper: ``,
@@ -15,15 +16,17 @@ const style = {
 export default function Home() {
   const { address, connectWallet } = useWeb3();
   const theme = useTheme();
+
   useEffect(() => {
     if (!address) return;
     (async () => {
       const userDoc = {
-        _type: "users",
+        _type: 'users',
         _id: address,
-        userName: "Unnamed",
+        userName: 'Unnamed',
         walletAddress: address,
       };
+      const result = await client.createIfNotExists(userDoc);
     })();
   }, [address]);
 
@@ -46,8 +49,7 @@ export default function Home() {
                 container
                 direction="column"
                 justifyContent="center"
-                alignItems="center"
-              >
+                alignItems="center">
                 <Grid item xs={12}>
                   <Typography variant="h1">p b and j</Typography>
                 </Grid>
@@ -66,8 +68,7 @@ export default function Home() {
                 container
                 direction="column"
                 justifyContent="center"
-                alignItems="center"
-              >
+                alignItems="center">
                 <Grid item xs={12}></Grid>
               </Grid>
             </Container>
@@ -77,8 +78,7 @@ export default function Home() {
         <div className={style.walletConnectWrapper}>
           <button
             className={style.button}
-            onClick={() => connectWallet("injected")}
-          >
+            onClick={() => connectWallet('injected')}>
             Connect Wallet
           </button>
           <div className={style.details}>
