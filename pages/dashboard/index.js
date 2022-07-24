@@ -48,7 +48,7 @@ export default function Dashboard() {
       {images.length > 0 ? (
         <ImageGrid images={images} />
       ) : (
-        <p>Upload Some Images Above To See Some NFTs</p>
+        <p className="mx-auto text-center">Upload Some Images Above To See Some NFTs</p>
       )}
     </div>
   );
