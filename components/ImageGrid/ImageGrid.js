@@ -22,16 +22,18 @@ export default function ImageUploader(props) {
       {images && images.length > 0 ? (
         <Masonry columns={mobileView ? 2 : 3} spacing={4} className="mx-auto">
           {images.map((item, index) => (
-            <div className="relative" key={index}>
-              <img className="mx-auto" src={item.url} alt={item.id} loading="lazy" />
-              {deleteImage !== false && images.length > 0 ? (
-                <CancelIcon
-                  className="absolute top-1 right-1"
-                  color="error"
-                  sx={{ fontSize: 40 }}
-                  onClick={() => deleteImage(item.id, item.url)}
-                />
-              ) : null}
+            <div key={index}>
+              <div className="relative mx-auto">
+                <img className="w-full" src={item.url} alt={item.id} loading="lazy" />
+                {deleteImage !== false && images.length > 0 ? (
+                  <CancelIcon
+                    className="absolute top-1 right-1"
+                    color="error"
+                    sx={{ fontSize: 40 }}
+                    onClick={() => deleteImage(item.id, item.url)}
+                  />
+                ) : null}
+              </div>
             </div>
           ))}
         </Masonry>
