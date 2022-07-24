@@ -105,9 +105,25 @@ export default function Home({ themeColor, setThemeColor }) {
             >
               <h3 className="mx-auto text-center mt-36 font-light text-2xl sm:text-4xl">
                 Start creating NFTs{' '}
-                <a href="/dashboard" className="font-bold uppercase cursor-pointer underline">
-                  here!
-                </a>
+                <Link href={'/dashboard'} passHref>
+                  <Button
+                    sx={{
+                      backgroundColor: theme.palette.error.main,
+                      color: theme.palette.primary.contrastText,
+                      fontSize: '3rem',
+                      textTransform: 'none',
+                      '&:hover': {
+                        backgroundColor: theme.palette.background.main,
+                        color: theme.palette.blackText.main,
+                        border: 'solid black 1px'
+                      }
+                    }}
+                    component="label"
+                    variant="outlined"
+                  >
+                    HERE!
+                  </Button>
+                </Link>
               </h3>
             </div>
           </div>
