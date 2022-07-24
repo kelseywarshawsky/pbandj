@@ -5,7 +5,6 @@ import ImageGrid from '../../components/ImageGrid/ImageGrid';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { useWeb3 } from '@3rdweb/hooks';
-import { getPinata, getAccessToken } from './../../pinata/pinata.js';
 import { getUsers } from '../../services/sanity.service';
 import { getPinata, deletePinata, unSubmarine } from './../../pinata/pinata.js';
 
@@ -96,7 +95,7 @@ export default function Dashboard() {
       {images.length > 0 ? (
         <div>
           <h3 className="text-center mt-3 mx-auto font-light text-3xl sm:text-4xl">Your Images</h3>
-          <ImageGrid images={images} deleteImage={deleteImage} pinIt={pinIt} />
+          <ImageGrid images={images} deleteImage={deleteImage} />
         </div>
       ) : (
         <p className="mx-auto text-center">Upload Some Images Above To See Some NFTs</p>
