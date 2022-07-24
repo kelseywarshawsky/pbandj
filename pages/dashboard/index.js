@@ -48,7 +48,10 @@ export default function Dashboard() {
 
   const getImageArray = async (NFTs, accessToken) => {
     const filteredNFTs = NFTs.filter((NFT) => {
-      return NFT.metadata.keyvalues.userAddress === address;
+      if (NFT && NFT.metadata && NFT.metadata.keyvalues && NFT.metadata.keyvalues.userAddress) {
+        return NFT.metadata.keyvalues.userAddress === address;
+      }
+      return false;
     });
     const urls = filteredNFTs.map((NFT) => {
       let url = buildImageUrl(NFT.cid, accessToken);
