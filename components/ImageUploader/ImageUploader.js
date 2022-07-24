@@ -15,6 +15,7 @@ export default function ImageUploader() {
     data.append('files', selectedImage);
     data.append('name', name);
     data.append('wrapWithDirectory', 'false');
+    data.append('metadata', '{"keyvalues": { "description": "' + description + '" }}');
     data.append('pinToIPFS', 'false');
 
     const config = {
