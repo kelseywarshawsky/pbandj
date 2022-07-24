@@ -1,10 +1,10 @@
 import Masonry from '@mui/lab/Masonry';
 import { useEffect, useState } from 'react';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 export default function ImageUploader(props) {
   const [mobileView, setMobileView] = useState();
-
-  const images = props.images;
+  const { images, deleteImage } = props;
   let mql;
 
   useEffect(() => {
@@ -22,9 +22,16 @@ export default function ImageUploader(props) {
       {images && images.length > 0 ? (
         <Masonry columns={mobileView ? 2 : 3} spacing={4} className="mx-auto">
           {images.map((item, index) => (
-            <div key={index}>
-              <img className="mx-auto" src={item} alt={item} loading="lazy" />
-              <button onClick={mintNft}>Mint NFT</button>
+            <div className="relative" key={index}>
+              <img className="mx-auto" src={item.url} alt={item.id} loading="lazy" />
+              {deleteImage !== false && images.length > 0 ? (
+                <CancelIcon
+                  className="absolute top-1 right-1"
+                  color="error"
+                  sx={{ fontSize: 40 }}
+                  onClick={() => deleteImage(item.id, item.url)}
+                />
+              ) : null}
             </div>
           ))}
         </Masonry>
