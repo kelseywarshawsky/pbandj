@@ -37,6 +37,7 @@ const Collection = () => {
   const router = useRouter();
   const { provider } = useWeb3();
   const { collectionid } = router.query;
+  console.log('collection id collections', collectionid);
   const [collection, setCollection] = useState({});
   const [nfts, setNfts] = useState([]);
   const [listings, setListings] = useState([]);
@@ -82,13 +83,17 @@ const Collection = () => {
   }, [marketPlaceModule]);
 
   const fetchCollectionData = async (sanityClient = client) => {
-    const query = `*[_type == "marketItems" && contractAddress == "${collectionid}"]{
-    "imageUrl":profileImage.asset->url,
-    "bannerImageUrl":bannerImage.asset->url,
-    volumeTraded, createdBy, contractAddress,
-    "creator":createdBy->userName,
-    title, floorPrice,
-    "allOwners":owners[]->, description}`;
+    const query = `*[_type == "marketItems" && contractAddress == "${collectionid}" ] {
+      "imageUrl": profileImage.asset->url,
+      "bannerImageUrl": bannerImage.asset->url,
+      volumeTraded,
+      createdBy,
+      contractAddress,
+      "creator": createdBy->userName,
+      title, floorPrice,
+      "allOwners": owners[]->,
+      description
+    }`;
 
     const collectionData = await sanityClient.fetch(query);
     console.log('collection data ', collectionData);

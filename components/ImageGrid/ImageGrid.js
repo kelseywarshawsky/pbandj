@@ -12,6 +12,9 @@ export default function ImageUploader(props) {
     setMobileView(mql.matches);
   }, [window.innerWidth]);
 
+  let mintNft = () => {
+    console.log('MINT ME');
+  };
   // console.log('images:', images);
 
   return (
@@ -21,6 +24,7 @@ export default function ImageUploader(props) {
           {images.map((item, index) => (
             <div key={index}>
               <img className="mx-auto" src={item} alt={item} loading="lazy" />
+              <button onClick={mintNft}>Mint NFT</button>
             </div>
           ))}
         </Masonry>
