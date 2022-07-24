@@ -2,9 +2,42 @@ import Head from 'next/head';
 import { Grid, Container, Divider, Typography } from '@mui/material';
 import { useTheme, Button } from '@mui/material';
 import { height } from '@mui/system';
+import { useWeb3 } from '@3rdweb/hooks';
+import { useEffect } from 'react';
+import { client } from '../lib/sanityClient';
 
-export default function Home() {
+const style = {
+  wrapper: ``,
+  walletConnectWrapper: `flex flex-col justify-center items-center h-screen w-screen bg-[#3b3d42] `,
+  button: `border border-[#282b2f] bg-[#2081e2] p-[0.8rem] text-xl font-semibold rounded-lg cursor-pointer text-black`,
+  details: `text-lg text-center text=[#282b2f] font-semibold mt-4`
+};
+
+export default function Home({ themeColor, setThemeColor }) {
+  const { address, connectWallet, chainId, provider } = useWeb3();
   const theme = useTheme();
+
+  useEffect(() => {
+    if (!address) return;
+    (async () => {
+      const userDoc = {
+        _type: 'users',
+        _id: address,
+        userName: 'Unnamed',
+        walletAddress: address
+      };
+      const result = await client.createIfNotExists(userDoc);
+      //comes from useWeb3()
+      console.log(' chain id ', chainId);
+      console.log('address == ', address);
+      console.log('provider == ', provider);
+      // console.log('results == ', result);
+      // console.log('connect wallet == ', connectWallet);
+      // console.log('disconnect wallet == ', disconnectWallet);
+      // console.log(' get network meta data == ', getNetworkMetadata);
+    })();
+  }, [address]);
+
   return (
     <div>
       <>

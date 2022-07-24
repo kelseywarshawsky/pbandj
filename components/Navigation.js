@@ -78,6 +78,10 @@ const Navigation = ({ themeColor, setThemeColor }) => {
             ))}
           </Box>
 
+          <Link href="/collections/0x74804f316B8CCCB7cfff8927EFb127DDCDB3E660">
+            <div>Collections</div>
+          </Link>
+
           <Box sx={{ flexGrow: 0 }}>
             <Grid container spacing={5}>
               <Grid item>
