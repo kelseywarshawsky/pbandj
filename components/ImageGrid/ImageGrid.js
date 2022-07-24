@@ -4,7 +4,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 
 export default function ImageUploader(props) {
   const [mobileView, setMobileView] = useState();
-  const { images, deleteImage, pinIt } = props;
+  const { images, deleteImage } = props;
   let mql;
 
   useEffect(() => {
@@ -19,12 +19,14 @@ export default function ImageUploader(props) {
           {images.map((item, index) => (
             <div className="relative" key={index}>
               <img className="mx-auto" src={item.url} alt={item.id} loading="lazy" />
-              <CancelIcon
-                className="absolute top-1 right-1"
-                color="error"
-                sx={{ fontSize: 40 }}
-                onClick={() => deleteImage(item.id, item.url)}
-              />
+              {deleteImage !== false && images.length > 0 ? (
+                <CancelIcon
+                  className="absolute top-1 right-1"
+                  color="error"
+                  sx={{ fontSize: 40 }}
+                  onClick={() => deleteImage(item.id, item.url)}
+                />
+              ) : null}
             </div>
           ))}
         </Masonry>

@@ -2,10 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import ImageUploader from '../../components/ImageUploader/ImageUploader';
 import ImageGrid from '../../components/ImageGrid/ImageGrid';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
 import { useWeb3 } from '@3rdweb/hooks';
-import { getUsers } from '../../services/sanity.service';
 import { getPinata, deletePinata, unSubmarine } from './../../pinata/pinata.js';
 
 export default function Dashboard() {
@@ -50,7 +47,7 @@ export default function Dashboard() {
     const filteredNFTs = NFTs.filter((NFT) => {
       return NFT.metadata.keyvalues.userAddress === address;
     });
-    const urls = filteredNFTs.map((NFT) => {
+    const urls = NFTs.map((NFT) => {
       let url = buildImageUrl(NFT.cid, accessToken);
       let id = NFT.id;
       return { url, id };
