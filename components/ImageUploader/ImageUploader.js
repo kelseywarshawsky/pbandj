@@ -5,13 +5,14 @@ import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
 import { postPinata } from '../../pinata/pinata.js';
 
-export default function ImageUploader() {
+export default function ImageUploader(props) {
+  const { getNewImage } = props;
   const [selectedImage, setSelectedImage] = useState(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
   const submitNFT = async () => {
-    postPinata(selectedImage, name, description);
+    await postPinata(selectedImage, name, description).then(() => getNewImage());
   };
 
   return (
