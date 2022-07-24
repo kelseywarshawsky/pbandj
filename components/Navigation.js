@@ -15,7 +15,7 @@ import Link from 'next/link';
 import { Grid } from '@mui/material';
 import { useTheme } from '@mui/system';
 
-const pages = ['about', 'dashboard', 'collections'];
+const pages = ['dashboard', 'collections'];
 const settings = ['Logout'];
 
 const Navigation = ({ themeColor, setThemeColor }) => {

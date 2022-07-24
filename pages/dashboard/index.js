@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import ImageUploader from '../../components/ImageUploader/ImageUploader';
 import ImageGrid from '../../components/ImageGrid/ImageGrid';
 import { getPinata, getAccessToken } from './../../pinata/pinata.js';
+import { getUsers } from '../../services/sanity.service';
 
 export default function Dashboard() {
   const [images, setImages] = useState([]);
@@ -48,7 +49,7 @@ export default function Dashboard() {
       {images.length > 0 ? (
         <ImageGrid images={images} />
       ) : (
-        <p>Upload Some Images Above To See Some NFTs</p>
+        <p className="mx-auto text-center">Upload Some Images Above To See Some NFTs</p>
       )}
     </div>
   );

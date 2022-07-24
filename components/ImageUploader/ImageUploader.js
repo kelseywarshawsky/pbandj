@@ -13,7 +13,10 @@ export default function ImageUploader(props) {
 
   const submitNFT = async () => {
     await postPinata(selectedImage, name, description);
-    setTimeout(getNewImage, 10000);
+    setSelectedImage(null);
+    setName('');
+    setDescription('');
+    setTimeout(getNewImage, 2000);
   };
 
   return (

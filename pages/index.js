@@ -3,8 +3,10 @@ import { Grid, Container, Divider, Typography, Stack, colors } from '@mui/materi
 import { useTheme, Button } from '@mui/material';
 import { height } from '@mui/system';
 import { useWeb3 } from '@3rdweb/hooks';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { client } from '../lib/sanityClient';
+import { getUsers } from '../services/sanity.service';
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import Link from 'next/link';
 
 const style = {
@@ -16,6 +18,7 @@ const style = {
 
 export default function Home({ themeColor, setThemeColor }) {
   const { address, connectWallet, chainId, provider } = useWeb3();
+  const [currentUser, setCurrentUser] = useState({});
   const theme = useTheme();
 
   useEffect(() => {
@@ -28,6 +31,14 @@ export default function Home({ themeColor, setThemeColor }) {
         walletAddress: address
       };
       const result = await client.createIfNotExists(userDoc);
+
+      const allUsers = await getUsers();
+
+      allUsers.forEach((user) => {
+        if (user.walletAddress === address) {
+          setCurrentUser(user);
+        }
+      });
       //comes from useWeb3()
       console.log(' chain id ', chainId);
       console.log('address == ', address);
@@ -49,94 +60,56 @@ export default function Home({ themeColor, setThemeColor }) {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
           </Head>
 
-          <div>
-            <div
-              style={{
-                backgroundColor: theme.palette.background.main,
-                height: '35vh'
-              }}
-            >
-              <Grid
-                container
-                flexDirection={'column'}
-                justifyContent={'center'}
-                alignContent={'center'}
-                alignItems={'center'}
-              >
-                <Grid item>
-                  <Typography variant="h1">welcome!</Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant="body1">what is p b & j?</Typography>
-                </Grid>
-              </Grid>
-              <Grid
-                container
-                flexDirection={'row'}
-                justifyContent={'center'}
-                alignItems={'center'}
-                spacing={5}
-                mt={5}
-              >
-                <Grid item xs={'auto'}>
-                  <Typography variant="h3">pinatas,</Typography>
-                </Grid>
-                <Grid item xs={'auto'}>
-                  <Typography variant="h3">blockchain,</Typography>
-                </Grid>
-              </Grid>
-              <Grid container justifyContent={'center'} mt={2}>
-                <Grid item>
-                  <Typography variant="h5">&</Typography>
-                </Grid>
-              </Grid>
+          <div
+            style={{
+              backgroundColor: theme.palette.background.main,
+              height: '100vh'
+            }}
+          >
+            <h2 className="font-bold text-6xl sm:text-9xl mx-auto text-center mt-24 mb-4">
+              PB and J
+            </h2>
+            <p className="font-semibold text-2xl sm:text-4xl mx-auto text-center my-3">
+              Store images with blockchain technology.
+            </p>
+            <p className="font-semibold text-2xl sm:text-4xl mx-auto text-center my-3">
+              Mint your own personal NFTs.
+            </p>
+
+            <br />
+            <br />
+            <div class="flex flex-col items-center justify-items-center">
+              <KeyboardDoubleArrowDownIcon
+                className="mx-auto text-center"
+                color="primary"
+                sx={{ fontSize: 200 }}
+              />
             </div>
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
             <div
               style={{
-                backgroundColor: theme.palette.secondary.main,
-                height: '35vh'
+                backgroundColor: theme.palette.primary.main,
+                width: '100%',
+                height: '350px'
               }}
+              className="slant-boi flex flex-col items-center justify-items-center"
             >
-              <Grid container height={'100%'} justifyContent={'center'} flexDirection={'column'}>
-                <Grid item xs={'auto'} container justifyContent={'center'}>
-                  <Grid item>
-                    <Typography
-                      variant="h1"
-                      sx={{
-                        fontWeight: 500,
-                        color: theme.palette.primary.main
-                      }}
-                    >
-                      JELLY!
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
+              <h3 className="mx-auto text-center mt-36 font-light text-2xl sm:text-4xl">
+                Start creating NFTs{' '}
+                <a href="/dashboard" className="font-bold uppercase cursor-pointer underline">
+                  here!
+                </a>
+              </h3>
             </div>
-            <div
-              style={{
-                backgroundColor: theme.palette.error.dark,
-                height: '35vh'
-              }}
-            >
-              <Grid container height={'100%'} justifyContent={'center'} flexDirection={'column'}>
-                <Grid item xs={'auto'} container justifyContent={'center'}>
-                  <Grid item>
-                    <Link href={'/about'} passHref>
-                      <Button variant="contained" component="label" size="large" sx={{}}>
-                        learn more
-                      </Button>
-                    </Link>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </div>
-            <div
-              style={{
-                backgroundColor: theme.palette.background.main,
-                height: '35vh'
-              }}
-            ></div>
           </div>
         </div>
       </>
