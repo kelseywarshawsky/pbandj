@@ -35,7 +35,8 @@ export default function Dashboard() {
   return (
     <div>
       <br />
-      <ImageUploader />({images.length > 0 ? <ImageGrid images={images} /> : null})
+      <ImageUploader />
+      {images.length > 0 ? <ImageGrid images={images} /> : null}
     </div>
   );
 }

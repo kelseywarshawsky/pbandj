@@ -1,14 +1,23 @@
 import Masonry from '@mui/lab/Masonry';
+import { useEffect, useState } from 'react';
 
 export default function ImageUploader(props) {
-  const images = props.images;
+  const [mobileView, setMobileView] = useState();
 
-  console.log('images:', images);
+  const images = props.images;
+  let mql;
+
+  useEffect(() => {
+    mql = window.matchMedia('(max-width: 600px)');
+    setMobileView(mql.matches);
+  }, [window.innerWidth]);
+
+  // console.log('images:', images);
 
   return (
     <div className="p-7 mx-auto">
       {images && images.length > 0 ? (
-        <Masonry columns={3} spacing={2} className="mx-auto">
+        <Masonry columns={mobileView ? 2 : 3} spacing={4} className="mx-auto">
           {images.map((item, index) => (
             <div key={index}>
               <img className="mx-auto" src={item} alt={item} loading="lazy" />
