@@ -14,13 +14,15 @@ import AdbIcon from '@mui/icons-material/Adb';
 import ThemeSwitcher from './ThemeSwitcher';
 import Link from 'next/link';
 import { Grid } from '@mui/material';
+import { useTheme } from '@mui/system';
 
-const pages = ['about', 'dashboard'];
+const pages = ['about', 'dashboard', 'collections'];
 const settings = ['Logout'];
 
 const Navigation = ({ themeColor, setThemeColor }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const theme = useTheme();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -68,19 +70,38 @@ const Navigation = ({ themeColor, setThemeColor }) => {
             p b & j
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Link href={`/${page}`} passHref>
-                <Button key={page} sx={{ my: 2, color: 'white', display: 'block' }}>
-                  {page}
-                </Button>
-              </Link>
-            ))}
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'none', md: 'flex' }
+            }}
+          >
+            {pages.map((page) => {
+              if (page === 'collections') {
+                return (
+                  <Link href={`/${page}/0x74804f316B8CCCB7cfff8927EFb127DDCDB3E660`} passHref>
+                    <Button
+                      key={page}
+                      sx={{ my: 2, display: 'block', color: theme.palette.primary.contrastText }}
+                    >
+                      {page}
+                    </Button>
+                  </Link>
+                );
+              } else {
+                return (
+                  <Link href={`/${page}`} passHref>
+                    <Button
+                      key={page}
+                      sx={{ my: 2, display: 'block', color: theme.palette.primary.contrastText }}
+                    >
+                      {page}
+                    </Button>
+                  </Link>
+                );
+              }
+            })}
           </Box>
-
-          <Link href="/collections/0x74804f316B8CCCB7cfff8927EFb127DDCDB3E660">
-            <div>Collections</div>
-          </Link>
 
           <Box sx={{ flexGrow: 0 }}>
             <Grid container spacing={5}>
