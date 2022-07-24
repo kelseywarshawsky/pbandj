@@ -15,7 +15,7 @@ import ThemeSwitcher from './ThemeSwitcher';
 import Link from 'next/link';
 import { Grid } from '@mui/material';
 
-const pages = ['about', 'dashboard'];
+const pages = ['dashboard'];
 const settings = ['Logout'];
 
 const Navigation = ({ themeColor, setThemeColor }) => {
@@ -78,9 +78,9 @@ const Navigation = ({ themeColor, setThemeColor }) => {
             ))}
           </Box>
 
-          <Link href="/collections/0x74804f316B8CCCB7cfff8927EFb127DDCDB3E660">
+          {/* <Link href="/collections/0x74804f316B8CCCB7cfff8927EFb127DDCDB3E660">
             <div>Collections</div>
-          </Link>
+          </Link> */}
 
           <Box sx={{ flexGrow: 0 }}>
             <Grid container spacing={5}>

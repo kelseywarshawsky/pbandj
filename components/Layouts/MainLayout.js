@@ -62,6 +62,18 @@ const Layout = ({ children }) => {
               <Grid item>
                 <Typography variant="h3">(Yes, it's really that simple)</Typography>
               </Grid>
+              <Grid item>
+                <Typography variant="h4">
+                  If you don't have metamask installed, click{' '}
+                  <a
+                    className="font-bold uppercase underline"
+                    href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en"
+                    target="_blank"
+                  >
+                    here!
+                  </a>
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
         </>

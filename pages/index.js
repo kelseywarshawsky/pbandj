@@ -6,6 +6,7 @@ import { useWeb3 } from '@3rdweb/hooks';
 import { useEffect, useState } from 'react';
 import { client } from '../lib/sanityClient';
 import { getUsers } from '../services/sanity.service';
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 
 const style = {
   wrapper: ``,
@@ -31,7 +32,7 @@ export default function Home({ themeColor, setThemeColor }) {
       const result = await client.createIfNotExists(userDoc);
 
       const allUsers = await getUsers();
-      
+
       allUsers.forEach((user) => {
         if (user.walletAddress === address) {
           setCurrentUser(user);
@@ -61,35 +62,53 @@ export default function Home({ themeColor, setThemeColor }) {
           <div
             style={{
               backgroundColor: theme.palette.background.main,
-              height: '35vh'
+              height: '100vh'
             }}
           >
-            {JSON.stringify(currentUser)}
-            Bread 1
-          </div>
-          <div
-            style={{
-              backgroundColor: theme.palette.secondary.main,
-              height: '35vh'
-            }}
-          >
-            JELLY{' '}
-          </div>
-          <div
-            style={{
-              backgroundColor: theme.palette.error.dark,
-              height: '35vh'
-            }}
-          >
-            PB{' '}
-          </div>
-          <div
-            style={{
-              backgroundColor: theme.palette.background.main,
-              height: '35vh'
-            }}
-          >
-            Bread 2
+            <h2 className="font-bold text-6xl sm:text-9xl mx-auto text-center mt-24 mb-4">
+              PB and J
+            </h2>
+            <p className="font-semibold text-2xl sm:text-4xl mx-auto text-center my-3">
+              Store images with blockchain technology.
+            </p>
+            <p className="font-semibold text-2xl sm:text-4xl mx-auto text-center my-3">
+              Mint your own personal NFTs.
+            </p>
+
+            <br />
+            <br />
+            <div class="flex flex-col items-center justify-items-center">
+              <KeyboardDoubleArrowDownIcon
+                className="mx-auto text-center"
+                color="primary"
+                sx={{ fontSize: 200 }}
+              />
+            </div>
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <div
+              style={{
+                backgroundColor: theme.palette.primary.main,
+                width: '100%',
+                height: '350px'
+              }}
+              className="slant-boi flex flex-col items-center justify-items-center"
+            >
+              <h3 className="mx-auto text-center mt-36 font-light text-2xl sm:text-4xl">
+                Start creating NFTs{' '}
+                <a href="/dashboard" className="font-bold uppercase cursor-pointer underline">
+                  here!
+                </a>
+              </h3>
+            </div>
           </div>
         </div>
       </>
