@@ -13,6 +13,7 @@ export async function getPinata() {
   let accessToken = '';
   try {
     await axios(config).then((res) => {
+      console.log('RES:::::', res);
       nfts = res.data.items;
     });
     const ids = nfts.map((nft) => nft.id);
@@ -45,12 +46,15 @@ export async function getAccessToken(ids) {
   return res.data;
 }
 
-export async function postPinata(image, name, description) {
+export async function postPinata(image, name, description, address) {
   const data = new FormData();
   data.append('files', image);
   data.append('name', name);
   data.append('wrapWithDirectory', 'false');
-  data.append('metadata', '{"keyvalues": { "description": "' + description + '" }}');
+  data.append(
+    'metadata',
+    '{"keyvalues": { "description": "' + description + '", "userAddress": "' + address + '" }}'
+  );
   data.append('pinToIPFS', 'false');
 
   const config = {

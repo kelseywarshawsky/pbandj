@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import ImageUploader from '../../components/ImageUploader/ImageUploader';
 import ImageGrid from '../../components/ImageGrid/ImageGrid';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 import { useWeb3 } from '@3rdweb/hooks';
 import { getPinata, getAccessToken } from './../../pinata/pinata.js';
 import { getUsers } from '../../services/sanity.service';
@@ -37,10 +39,14 @@ export default function Dashboard() {
   };
 
   const getImageArray = async (NFTs, accessToken) => {
-    const urls = NFTs.map((NFT) => {
+    const filteredNFTs = NFTs.filter((NFT) => {
+      return NFT.metadata.keyvalues.userAddress === address;
+    });
+    const urls = filteredNFTs.map((NFT) => {
       let url = buildImageUrl(NFT.cid, accessToken);
       return url;
     });
+
     setImages(urls);
   };
 
@@ -56,11 +62,19 @@ export default function Dashboard() {
   return (
     <div>
       <br />
-      <ImageUploader getNewImage={getNewImage} />
+      <ImageUploader getNewImage={getNewImage} address={address} />
       {images.length > 0 ? (
         <div>
           <h3 className="text-center mt-3 mx-auto font-light text-3xl sm:text-4xl">Your Images</h3>
           <ImageGrid images={images} />
+
+          {/* <ImageList variant="masonry" cols={{ xs: 3, sm: 4 }} gap={4}>
+            {images.map((item) => (
+              <ImageListItem key={item}>
+                <img src={item} loading="lazy" />
+              </ImageListItem>
+            ))}
+          </ImageList> */}
         </div>
       ) : (
         <p className="mx-auto text-center">Upload Some Images Above To See Some NFTs</p>

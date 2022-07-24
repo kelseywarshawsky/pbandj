@@ -19,7 +19,7 @@ export default function ImageUploader(props) {
       {images && images.length > 0 ? (
         <Masonry columns={mobileView ? 2 : 3} spacing={4} className="mx-auto">
           {images.map((item, index) => (
-            <div key={index}>
+            <div>
               <img className="mx-auto" src={item} alt={item} loading="lazy" />
             </div>
           ))}
