@@ -41,3 +41,24 @@ export async function postPinata(image, name, description) {
     return res.data;
   });
 }
+
+export async function getAccessToken() {
+  var data = JSON.stringify({
+    timeoutSeconds: 3600,
+    contentIds: ['2291db4c-2d1f-4a21-b375-6fee42738ca8']
+  });
+
+  var config = {
+    method: 'post',
+    url: 'https://managed.mypinata.cloud/api/v1/auth/content/jwt',
+    headers: {
+      'x-api-key': process.env.NEXT_PUBLIC_SUBMARINE_KEY,
+      'Content-Type': 'application/json'
+    },
+    data: data
+  };
+
+  const res = await axios(config);
+  console.log(res);
+  return res.data;
+}

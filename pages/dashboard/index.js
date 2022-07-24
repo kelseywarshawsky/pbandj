@@ -12,7 +12,7 @@ export default function Dashboard() {
         .catch((err) => console.error(err));
     }
     fetchData();
-  }, [NFTs]);
+  }, []);
 
   return (
     <div>
