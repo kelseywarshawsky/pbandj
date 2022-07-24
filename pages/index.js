@@ -3,6 +3,7 @@ import { useTheme } from '@mui/material';
 import { useWeb3 } from '@3rdweb/hooks';
 import Head from 'next/head';
 import { Grid, Container, Divider, Typography } from '@mui/material';
+import { client } from '../lib/sanityClient';
 
 const style = {
   wrapper: ``,
@@ -14,6 +15,7 @@ const style = {
 export default function Home({ themeColor, setThemeColor }) {
   const { address, connectWallet } = useWeb3();
   const theme = useTheme();
+
   useEffect(() => {
     if (!address) return;
     (async () => {
@@ -23,6 +25,7 @@ export default function Home({ themeColor, setThemeColor }) {
         userName: 'Unnamed',
         walletAddress: address
       };
+      const result = await client.createIfNotExists(userDoc);
     })();
   }, [address]);
 
