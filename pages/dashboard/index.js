@@ -5,15 +5,29 @@ import { getPinata } from './../../pinata/pinata.js';
 
 export default function Dashboard() {
   const [NFTs, setNFTs] = useState([]);
+  const [imageArray, setImageArray] = useState([]);
+
+  const buildImageUrl = (cid, token) => {
+    const url = `${process.env.NEXT_PUBLIC_DEFAULT_GATEWAY}/ipfs/${cid}&accessToken=${token}`;
+    return url;
+  };
 
   useEffect(() => {
     async function fetchData() {
       await getPinata()
-        .then((res) => setNFTs(res))
+        .then((res) => {
+          setNFTs(res);
+          NFTs.forEach((NFT) => {
+            let oneUrl = buildImageUrl(NFT.cid, 'token');
+            setImageArray([...imageArray, oneUrl]);
+          });
+        })
         .catch((err) => console.error(err));
     }
     fetchData();
-  }, [NFTs]);
+
+    console.log('nfts', NFTs);
+  }, []);
 
   return (
     <div>
@@ -21,20 +35,7 @@ export default function Dashboard() {
       <ImageUploader />
       <ImageGrid
         // images={[]}
-        images={[
-          '/images/jelly.jpg',
-          '/images/peanut-butter.jpg',
-          '/images/peanut-butter.jpg',
-          '/images/peanut-butter.jpg',
-          '/images/peanut-butter.jpg',
-          '/images/peanut-butter.jpg',
-          '/images/peanut-butter.jpg',
-          '/images/peanut-butter.jpg',
-          '/images/peanut-butter.jpg',
-          '/images/peanut-butter.jpg',
-          '/images/peanut-butter.jpg',
-          '/images/peanut-butter.jpg'
-        ]}
+        images={imageArray}
       />
     </div>
   );
