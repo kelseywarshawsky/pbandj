@@ -37,10 +37,10 @@ export default function ImageUploader() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-items-center mx-auto my-auto">
+    <div className="flex flex-col p-4 items-center justify-items-center mx-auto my-auto">
       <Card sx={{ minWidth: 275 }}>
         <CardContent>
-          <h2 className="font-light text-2xl my-2 text-center">Upload Your Image</h2>
+          <h2 className="font-normal text-2xl my-2 text-center">Create Your NFT</h2>
           {selectedImage ? (
             <div className="flex flex-col items-center justify-items-center">
               <img

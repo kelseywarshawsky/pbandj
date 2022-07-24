@@ -1,10 +1,11 @@
 import ImageUploader from '../../components/ImageUploader/ImageUploader';
+import ImageGrid from '../../components/ImageGrid/ImageGrid';
 
 export default function Dashboard() {
   return (
     <div>
-      <h3 className="text-blue-800">Dashboard</h3>
       <ImageUploader />
+      <ImageGrid images={['/images/jelly.jpg', '/images/peanut-butter.jpg']} />
     </div>
   );
 }
