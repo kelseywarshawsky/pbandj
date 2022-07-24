@@ -8,7 +8,7 @@ import Header from '../../components/Header';
 import { CgWebsite } from 'react-icons/cg';
 import { AiOutlineInstagram, AiOutlineTwitter } from 'react-icons/ai';
 import { HiDotsVertical } from 'react-icons/hi';
-// import NFTCard from '../../components/NFTCard';
+import NFTCard from '../../components/NFTCard';
 
 const style = {
   bannerImageContainer: `h-[20vh] w-screen overflow-hidden flex justify-center items-center`,
@@ -49,6 +49,7 @@ const Collection = () => {
       // provider.getSinger(),
       'https://eth-rinkeby.alchemyapi.io/v2/Nf92zrkri1if8epFPebxfavh0_Xdv3zo'
     );
+    console.log('SDK == ', sdk);
     return sdk.getNFTModule(collectionid);
   }, [provider]);
 
@@ -58,6 +59,7 @@ const Collection = () => {
     (async () => {
       const nfts = await nftModule.getAll();
       setNfts(nfts);
+      console.log('nfts ==== ', nfts);
     })();
   }, [nftModule]);
 
@@ -86,8 +88,7 @@ const Collection = () => {
     volumeTraded, createdBy, contractAddress,
     "creator":createdBy->userName,
     title, floorPrice,
-    "allOwners":owners[]->, description
-}`;
+    "allOwners":owners[]->, description}`;
 
     const collectionData = await sanityClient.fetch(query);
     console.log('collection data ', collectionData);
@@ -98,8 +99,8 @@ const Collection = () => {
     fetchCollectionData();
   }, [collectionid]);
 
-  console.log(router.query);
-  console.log(router.query.collectionid);
+  // console.log('router query == ', router.query);
+  // console.log('collection id ', router.query.collectionid);
   return (
     <div className="overflow-hidden">
       {/* <Header /> */}
@@ -186,9 +187,9 @@ const Collection = () => {
         </div>
       </div>
       <div className="flex flex-wrap ">
-        {/* {nfts.map((nftItem, id) => ( */}
-        {/* // <NFTCard key={id} nftItem={nftItem} title={collection?.title} listings={listings} /> */}
-        {/* // ))} */}
+        {nfts.map((nftItem, id) => (
+          <NFTCard key={id} nftItem={nftItem} title={collection?.title} listings={listings} />
+        ))}
       </div>
     </div>
   );
