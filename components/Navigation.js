@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import ThemeSwitcher from './ThemeSwitcher';
+import Link from 'next/link';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -126,6 +127,10 @@ const Navigation = ({ themeColor, setThemeColor }) => {
               </Button>
             ))}
           </Box>
+
+          <Link href="/collections/0x74804f316B8CCCB7cfff8927EFb127DDCDB3E660">
+            <div>Collections</div>
+          </Link>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
