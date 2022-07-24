@@ -1,13 +1,24 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import ImageUploader from '../../components/ImageUploader/ImageUploader';
 import ImageGrid from '../../components/ImageGrid/ImageGrid';
+import { useWeb3 } from '@3rdweb/hooks';
 import { getPinata, getAccessToken } from './../../pinata/pinata.js';
 import { getUsers } from '../../services/sanity.service';
 
 export default function Dashboard() {
   const [images, setImages] = useState([]);
+  const router = useRouter();
+
+  const { address } = useWeb3();
 
   useEffect(() => {
+    if (!address) {
+      router.push('/');
+    }
+  }, [address]);
+
+  https: useEffect(() => {
     async function fetchData() {
       if (images.length === 0) {
         await getPinata()
