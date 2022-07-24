@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 // import { AppProps } from "next/app";
+import CssBaseline from '@mui/material/CssBaseline';
 import { ThirdwebWeb3Provider } from '@3rdweb/hooks';
 import MainLayout from '../components/Layouts/MainLayout';
 
@@ -62,7 +63,8 @@ const darkTheme = createTheme(themeColors, {
     mode: 'dark',
     background: {
       main: themeColors.brown.main,
-      paper: themeColors.brown.light
+      paper: themeColors.brown.light,
+      default: themeColors.brown.main
     },
     text: {
       primary: '#FFEBEE',
@@ -102,7 +104,8 @@ const lightTheme = createTheme(themeColors, {
     mode: 'light',
     background: {
       main: themeColors.whiteBackground.main,
-      paper: themeColors.whiteBackground.light
+      paper: themeColors.whiteBackground.light,
+      default: themeColors.whiteBackground.main
     },
     text: {
       primary: '#161616',
@@ -157,6 +160,7 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <ThirdwebWeb3Provider supportedChainIds={supportedChainIds} connectors={connectors}>
       <ThemeProvider theme={getLightorDarkTheme(themeColor)}>
+        <CssBaseline />
         <Navigation themeColor={themeColor} setThemeColor={setThemeColor} />
         <MainLayout>
           <Component {...pageProps} />

@@ -38,7 +38,7 @@ const Navigation = ({ themeColor, setThemeColor }) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" enableColorOnDark>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
