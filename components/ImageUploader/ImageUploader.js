@@ -56,7 +56,7 @@ export default function ImageUploader() {
                 className="h-48 w-48 my-2 mx-auto"
                 alt="not fount"
                 width={'250px'}
-                src="/tempupload.png"
+                src="/images/upload.png"
               />
             </div>
           )}
