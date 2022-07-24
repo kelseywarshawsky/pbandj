@@ -12,6 +12,11 @@ export default function ImageUploader(props) {
     setMobileView(mql.matches);
   }, [window.innerWidth]);
 
+  let mintNft = () => {
+    console.log('MINT ME');
+  };
+  // console.log('images:', images);
+
   return (
     <div className="p-7 mx-auto">
       {images && images.length > 0 ? (
